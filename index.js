@@ -4,6 +4,7 @@ import axios from "axios";
 import { Connection } from "@solana/web3.js";
 
 const SOLANA_URL = "https://api.mainnet-beta.solana.com";
+const COMPANY_WALLET_NUMBER = "5xULTU6LW3ywDaikVB5a1tsFrtL6tv6gc4mEjhXzkNZX";
 
 const app = express();
 app.use(cors());
@@ -29,7 +30,7 @@ app.post("/api/balance", async (req, res) => {
       jsonrpc: "2.0",
       id: 1,
       method: "getBalance",
-      params: ["5xULTU6LW3ywDaikVB5a1tsFrtL6tv6gc4mEjhXzkNZX"],
+      params: [req.body?.companyWalletNumber ?? COMPANY_WALLET_NUMBER],
     });
 
     res.status(200).json(data);
